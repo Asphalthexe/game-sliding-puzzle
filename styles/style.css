@@ -1,0 +1,126 @@
+body {
+    font-family: monospace;
+    text-align: center;
+    margin: 0px;
+    background-color: black;
+    color: white;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+}
+
+h1 {
+    font-size: 40pt;
+}
+
+footer {
+    margin-top: 10px;
+}
+
+#info {
+    border: 1px dashed white;
+    width: 450px;
+    height: 700px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    padding: 20px;
+}
+
+
+
+/*  DIV over main DIV  */
+.popup {
+    position: absolute;
+    display: none;
+    top: 180px;
+}
+
+
+/*  Puzzle DIV  */
+#puzzleGame {
+    width: 550px;
+    height: 700px;
+    background-color: black;
+    color: white;
+    border: white solid 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+
+/*  ////////////// Puzzle Tiles //////////////////  */
+
+.tile1,
+.tile2,
+.tile3,
+.tile4,
+.tile5,
+.tile6,
+.tile7,
+.tile8,
+.tile9 {
+    display: table-cell;
+    width: 180px;
+    height: 233px;
+    border: 1px solid white;
+    background: url('../images/birmingham-museums-trust-sJr8LDyEf7k-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: 510px 800px;
+    cursor: pointer;
+    vertical-align: center;
+}
+
+.tile1 {
+    background-position: left top;
+}
+
+.tile2 {
+    background-position: center top;
+}
+
+.tile3 {
+    background-position: right top;
+}
+
+.tile4 {
+    background-position: left center;
+}
+
+.tile5 {
+    background-position: center center;
+}
+
+.tile6 {
+    background-position: right center;
+}
+
+.tile7 {
+    background-position: left bottom;
+}
+
+.tile8 {
+    background-position: center bottom;
+}
+
+.tile9 {
+    background:white;
+    cursor: default;
+}
+
+/*  ////////////////// END Puzzle Tiles ///////////////  */
+
+.buttons {
+    background-color: rgb(19, 131, 56);
+    color: white;
+    border: none;
+}
