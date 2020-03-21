@@ -1,21 +1,18 @@
-////////////////////////////////////////////////////////
-
-
-///////////////////////////////////////////////////////
-
 // Slide Puzzle Game
 
 window.onload = () => {
    document.getElementById('btnStartPuzzle').onclick = () => {
-      document.querySelector('.popup').style.display = 'none';
-      shuffle()
+      //document.querySelector('.popup').style.display = 'none';
+      shuffle();
+      selectRandom();
       checkWin();
-      countTime()
+      //countTime()
    }
 };
 
+///////////////////////////////////////////////////////
 // TIME COUNTER //
-function countTime() {
+/* function countTime() {
    let canvas = document.getElementById('canvas')
    let ctx = canvas.getContext('2d')
 
@@ -26,47 +23,58 @@ function countTime() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       timeCounter++
 
+   
+      // setInterval(function(){timeCounter++ }, 1000);
+    
+
       ctx.font = '25pt monspace'
       ctx.fillStyle = 'green'
-      ctx.fillText(`Your Time: ${timeCounter}`, 0, 50)
+      ctx.fillText(`Your Time: ${timeCounter}`, 0, 60);
       if (checkWin() === false) {
+         console.log("hello")
          window.requestAnimationFrame(draw);
       } else {
+         console.log("bye")
          clearTimeout(timeCounter);
       }
+
+      console.log("checkWin()",checkWin())
 
       window.requestAnimationFrame(draw)
    }
 
    draw()
-}
+} */
+
+// setInterwall
 // TIME COUNTER END //
 
-////////////////////////
+
+
+////////////////////////////////////////////////////////
+
 // Set Random Background Image //
-let imgArray = [
-   '../images/birmingham-museums-trust-sJr8LDyEf7k-unsplash.jpg',
-   '../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg',
-   '../images/ayo-ogunseinde-Erstoy-MuVA-unsplash.jpg',
-   '../images/brandon-vazquez-jdvpdAvDuB0-unsplash.jpg',
-   '../images/kolya-korzh-RMVdKLMDGo0-unsplash.jpg',
-   '../images/mehrad-vosoughi-1E5XakhWNOw-unsplash.jpg',
-   '../images/orlova-maria-bU8TeXhsPcY-unsplash.jpg',
-   '../images/photo-1509437142917-63dfe86dcbec.jpg',
-   '../images/sharon-pittaway-N7FtpkC_P7o-unsplash.jpg',
-   '../images/vista-wei-OiERUvVrioU-unsplash.jpg',
-   '../images/yucel-moran-ff0WHlZi1HU-unsplash.jpg',
-]
+function selectRandom() {
+   let imgArray = [
+      'images/birmingham-museums-trust-sJr8LDyEf7k-unsplash.jpg',
+      'images/adrianna-geo-1rBg5YSi00c-unsplash.jpg',
+      'images/ayo-ogunseinde-Erstoy-MuVA-unsplash.jpg',
+      'images/brandon-vazquez-jdvpdAvDuB0-unsplash.jpg',
+      'images/kolya-korzh-RMVdKLMDGo0-unsplash.jpg',
+      'images/mehrad-vosoughi-1E5XakhWNOw-unsplash.jpg',
+      'images/orlova-maria-bU8TeXhsPcY-unsplash.jpg',
+      'images/photo-1509437142917-63dfe86dcbec.jpg',
+      'images/sharon-pittaway-N7FtpkC_P7o-unsplash.jpg',
+      'images/vista-wei-OiERUvVrioU-unsplash.jpg',
+      'images/yucel-moran-ff0WHlZi1HU-unsplash.jpg',
+   ]
 
-let randomImg = imgArray[Math.floor(Math.random() * imgArray.length)];
+   let randomImg = imgArray[Math.floor(Math.random() * imgArray.length)];
 
-//document.querySelector('.tile1').style.backgroundImage = "url('../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg')";
-/*    for(let i=1;i<=9;i++){
-document.querySelector(`.tile${i}`).style.background="../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg"
-
-   } */
-//sdocument.getElementById(cell1).className('.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8,.tile9').style.background = "randomImg";
-
+   for (let i = 1; i <= 9; i++) {
+      document.querySelector(`.tile${i}`).style.backgroundImage = `url(${randomImg})`;
+   }
+}
 // Set Random Background Image END //
 
 
@@ -110,29 +118,29 @@ function checkWin() {
          cell13.classList.contains("tile3") === true &&
          cell12.classList.contains("tile2") === true &&
          cell11.classList.contains("tile1") === true) {
-         console.log("everything in spot")
+         // console.log("every?thing in spot")
          return true
       } else {
+         //console.log("something is not in correct spot");
          return false;
-         console.log("something is not in correct spot");
       }
    }
 
-   // check if win or lose
-   let check = setInterval(function () {
-      if (correctPlace() === true) {
-         //alert("Won Game")
-         console.log("Won Game")
-         // set .popup to visible //
-         document.getElementsByClassName('popup').style.display = 'inherit';
-         clearInterval(check)
-      } else {
-         console.log("not the correct place")
-      }
-   }, 80)
+
 
 }
-
+   // check if win or lose
+   let check = setInterval(function () {
+      if (checkWin() === true) {
+         alert("Won Game")
+         //console.log("Won Game")
+         // set .popup to visible //
+         //document.getElementsByClassName('popup').style.display = 'inherit';
+         clearInterval(check)
+      } else {
+         //console.log("not the correct place")
+      }
+   }, 80)
 
 
 /////////////// Swap tiles ////////////////////////////////////////////////////////
@@ -195,5 +203,5 @@ function clickTile(row, column) {
 
 }
 
-
+// Swap Tiles END //
 ///////////////////////////////////////////////////////////////////////////

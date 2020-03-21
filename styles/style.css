@@ -79,8 +79,8 @@ footer {
     width: 180px;
     height: 233px;
     border: 1px solid white;
-    background: url('../images/vista-wei-OiERUvVrioU-unsplash.jpg');
-    background-repeat: no-repeat;
+    /* background: url('../images/vista-wei-OiERUvVrioU-unsplash.jpg');
+     */background-repeat: no-repeat;
     background-size: 540px 700px;
     cursor: pointer;
     vertical-align: center;
@@ -121,6 +121,7 @@ footer {
 .tile9 {
     background: white;
     cursor: default;
+    background-image: none !important;
 }
 
 /*  ////////////////// END Puzzle Tiles ///////////////  */
