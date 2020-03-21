@@ -37,10 +37,13 @@ footer {
 /*  DIV over main DIV  */
 .popup {
     position: absolute;
-    display: inherit;
-    top: 180px;
-    left:400px;
-    font-size: 25pt;
+    display: none;
+    background-color: white;
+    width: 350px;
+    height: 150px;
+    top: 350px;
+    left:500px;
+    font-size: 20pt;
     color: green;
 }
 
@@ -126,4 +129,5 @@ footer {
     background-color: rgb(19, 131, 56);
     color: white;
     border: none;
+    height: 20px;
 }

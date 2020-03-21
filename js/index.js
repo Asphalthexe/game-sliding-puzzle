@@ -1,10 +1,4 @@
 ////////////////////////////////////////////////////////
-// implement zeit oder züge zähler
-// close windoow für invisible div setzen
-// implement win function + lose function maybe
-// typewriter text when start
-
-
 
 
 ///////////////////////////////////////////////////////
@@ -12,9 +6,10 @@
 // Slide Puzzle Game
 
 window.onload = () => {
-   document.getElementById('startPuzzle').onclick = () => {
+   document.getElementById('btnStartPuzzle').onclick = () => {
       shuffle()
       checkWin();
+      //document.getElementsByClassName('.popup').style.display = 'none';
    }
    // TIME COUNTER //
    let canvas = document.getElementById('canvas')
@@ -27,7 +22,7 @@ window.onload = () => {
 
       ctx.font = '25pt monspace'
       ctx.fillStyle = 'green'
-      ctx.fillText(`Your Time: ${timeCounter}`, 0, 50)
+      ctx.fillText(`Your Time: ${timeCounter}`, 0, 500)
       if (checkWin() === false) {
          window.requestAnimationFrame(draw);
       } else {
@@ -58,13 +53,21 @@ window.onload = () => {
 
    let randomImg = imgArray[Math.floor(Math.random() * imgArray.length)];
 
-   document.querySelector('.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8,.tile9').style.background = "randomImg";
+   //document.querySelector('.tile1').style.backgroundImage = "url('../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg')";
+   /*    for(let i=1;i<=9;i++){
+   document.querySelector(`.tile${i}`).style.background="../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg"
+
+      } */
+   //sdocument.getElementById(cell1).className('.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8,.tile9').style.background = "randomImg";
 
    // Set Random Background Image END //
 
 };
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+// CHECK CORRECT SPOT //
 // Check row 3 + 2 + 1, if every tile is on the correct spot (cell)
 let cell11 = document.getElementById("cell11")
 let cell12 = document.getElementById("cell12")
@@ -122,69 +125,69 @@ function checkWin() {
       }
    }, 80)
 
+}
+
+
+
+/////////////// Swap tiles ////////////////////////////////////////////////////////
+function swapTiles(cell1, cell2) {
+   let temp = document.getElementById(cell1).className;
+   document.getElementById(cell1).className = document.getElementById(cell2).className;
+   document.getElementById(cell2).className = temp;
+}
+
+function shuffle() {
+   // access each cell of the 3x3 grid
+   // For each row of the 3x3 grid
+   for (let row = 1; row <= 3; row++) {
+      //For each column in this row
+      for (let column = 1; column <= 3; column++) {
+         // Pick a random row from 1 to 3
+         let row2 = Math.floor(Math.random() * 3 + 1);
+         // Pick a random column from 1 to 3
+         let column2 = Math.floor(Math.random() * 3 + 1);
+         // Swap both cells
+         swapTiles("cell" + row + column, "cell" + row2 + column2);
+      }
    }
+}
 
-
-
-/////////////// Swap tiles /////////////
-   function swapTiles(cell1, cell2) {
-      let temp = document.getElementById(cell1).className;
-      document.getElementById(cell1).className = document.getElementById(cell2).className;
-      document.getElementById(cell2).className = temp;
-   }
-
-   function shuffle() {
-      // access each cell of the 3x3 grid
-      // For each row of the 3x3 grid
-      for (let row = 1; row <= 3; row++) {
-         //For each column in this row
-         for (let column = 1; column <= 3; column++) {
-            // Pick a random row from 1 to 3
-            let row2 = Math.floor(Math.random() * 3 + 1);
-            // Pick a random column from 1 to 3
-            let column2 = Math.floor(Math.random() * 3 + 1);
-            // Swap both cells
-            swapTiles("cell" + row + column, "cell" + row2 + column2);
+function clickTile(row, column) {
+   let cell = document.getElementById("cell" + row + column);
+   let tile = cell.className;
+   if (tile != "tile9") {
+      // Check if empty tile on the right
+      if (column < 3) {
+         if (document.getElementById("cell" + row + (column + 1)).className == "tile9") {
+            swapTiles("cell" + row + column, "cell" + row + (column + 1));
+            return;
+         }
+      }
+      // Check if empty tile on the left
+      if (column > 1) {
+         if (document.getElementById("cell" + row + (column - 1)).className == "tile9") {
+            swapTiles("cell" + row + column, "cell" + row + (column - 1));
+            return;
+         }
+      }
+      // Check if empty tile is above
+      if (row > 1) {
+         if (document.getElementById("cell" + (row - 1) + column).className == "tile9") {
+            swapTiles("cell" + row + column, "cell" + (row - 1) + column);
+            return;
+         }
+      }
+      // Check if empty tile is below
+      if (row < 3) {
+         if (document.getElementById("cell" + (row + 1) + column).className == "tile9") {
+            swapTiles("cell" + row + column, "cell" + (row + 1) + column);
+            return;
          }
       }
    }
 
-   function clickTile(row, column) {
-      let cell = document.getElementById("cell" + row + column);
-      let tile = cell.className;
-      if (tile != "tile9") {
-         // Check if empty tile on the right
-         if (column < 3) {
-            if (document.getElementById("cell" + row + (column + 1)).className == "tile9") {
-               swapTiles("cell" + row + column, "cell" + row + (column + 1));
-               return;
-            }
-         }
-         // Check if empty tile on the left
-         if (column > 1) {
-            if (document.getElementById("cell" + row + (column - 1)).className == "tile9") {
-               swapTiles("cell" + row + column, "cell" + row + (column - 1));
-               return;
-            }
-         }
-         // Check if empty tile is above
-         if (row > 1) {
-            if (document.getElementById("cell" + (row - 1) + column).className == "tile9") {
-               swapTiles("cell" + row + column, "cell" + (row - 1) + column);
-               return;
-            }
-         }
-         // Check if empty tile is below
-         if (row < 3) {
-            if (document.getElementById("cell" + (row + 1) + column).className == "tile9") {
-               swapTiles("cell" + row + column, "cell" + (row + 1) + column);
-               return;
-            }
-         }
-      }
+
+}
 
 
-   }
-
-
-   ///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
