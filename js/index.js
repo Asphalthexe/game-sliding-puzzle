@@ -7,22 +7,28 @@
 
 window.onload = () => {
    document.getElementById('btnStartPuzzle').onclick = () => {
+      document.querySelector('.popup').style.display = 'none';
       shuffle()
       checkWin();
-      //document.getElementsByClassName('.popup').style.display = 'none';
+      countTime()
    }
-   // TIME COUNTER //
+};
+
+// TIME COUNTER //
+function countTime() {
    let canvas = document.getElementById('canvas')
    let ctx = canvas.getContext('2d')
 
    let timeCounter = 0
 
    let draw = () => {
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       timeCounter++
 
       ctx.font = '25pt monspace'
       ctx.fillStyle = 'green'
-      ctx.fillText(`Your Time: ${timeCounter}`, 0, 500)
+      ctx.fillText(`Your Time: ${timeCounter}`, 0, 50)
       if (checkWin() === false) {
          window.requestAnimationFrame(draw);
       } else {
@@ -33,36 +39,36 @@ window.onload = () => {
    }
 
    draw()
-   // TIME COUNTER END //
+}
+// TIME COUNTER END //
 
-   ////////////////////////
-   // Set Random Background Image //
-   let imgArray = [
-      '../images/birmingham-museums-trust-sJr8LDyEf7k-unsplash.jpg',
-      '../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg',
-      '../images/ayo-ogunseinde-Erstoy-MuVA-unsplash.jpg',
-      '../images/brandon-vazquez-jdvpdAvDuB0-unsplash.jpg',
-      '../images/kolya-korzh-RMVdKLMDGo0-unsplash.jpg',
-      '../images/mehrad-vosoughi-1E5XakhWNOw-unsplash.jpg',
-      '../images/orlova-maria-bU8TeXhsPcY-unsplash.jpg',
-      '../images/photo-1509437142917-63dfe86dcbec.jpg',
-      '../images/sharon-pittaway-N7FtpkC_P7o-unsplash.jpg',
-      '../images/vista-wei-OiERUvVrioU-unsplash.jpg',
-      '../images/yucel-moran-ff0WHlZi1HU-unsplash.jpg',
-   ]
+////////////////////////
+// Set Random Background Image //
+let imgArray = [
+   '../images/birmingham-museums-trust-sJr8LDyEf7k-unsplash.jpg',
+   '../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg',
+   '../images/ayo-ogunseinde-Erstoy-MuVA-unsplash.jpg',
+   '../images/brandon-vazquez-jdvpdAvDuB0-unsplash.jpg',
+   '../images/kolya-korzh-RMVdKLMDGo0-unsplash.jpg',
+   '../images/mehrad-vosoughi-1E5XakhWNOw-unsplash.jpg',
+   '../images/orlova-maria-bU8TeXhsPcY-unsplash.jpg',
+   '../images/photo-1509437142917-63dfe86dcbec.jpg',
+   '../images/sharon-pittaway-N7FtpkC_P7o-unsplash.jpg',
+   '../images/vista-wei-OiERUvVrioU-unsplash.jpg',
+   '../images/yucel-moran-ff0WHlZi1HU-unsplash.jpg',
+]
 
-   let randomImg = imgArray[Math.floor(Math.random() * imgArray.length)];
+let randomImg = imgArray[Math.floor(Math.random() * imgArray.length)];
 
-   //document.querySelector('.tile1').style.backgroundImage = "url('../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg')";
-   /*    for(let i=1;i<=9;i++){
-   document.querySelector(`.tile${i}`).style.background="../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg"
+//document.querySelector('.tile1').style.backgroundImage = "url('../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg')";
+/*    for(let i=1;i<=9;i++){
+document.querySelector(`.tile${i}`).style.background="../images/adrianna-geo-1rBg5YSi00c-unsplash.jpg"
 
-      } */
-   //sdocument.getElementById(cell1).className('.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8,.tile9').style.background = "randomImg";
+   } */
+//sdocument.getElementById(cell1).className('.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8,.tile9').style.background = "randomImg";
 
-   // Set Random Background Image END //
+// Set Random Background Image END //
 
-};
 
 
 
@@ -115,10 +121,10 @@ function checkWin() {
    // check if win or lose
    let check = setInterval(function () {
       if (correctPlace() === true) {
-         alert("Won Game")
+         //alert("Won Game")
          console.log("Won Game")
          // set .popup to visible //
-         document.getElementsByClassName('.popup').style.display = 'inherit';
+         document.getElementsByClassName('popup').style.display = 'inherit';
          clearInterval(check)
       } else {
          console.log("not the correct place")
