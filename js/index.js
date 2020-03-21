@@ -13,7 +13,7 @@
 
 window.onload = () => {
    document.getElementById('startPuzzle').onclick = () => {
-      shuffle();
+      shuffle()
       checkWin();
    }
    // TIME COUNTER //
@@ -30,10 +30,10 @@ window.onload = () => {
       ctx.fillText(`Your Time: ${timeCounter}`, 0, 50)
       if (checkWin() === false) {
          window.requestAnimationFrame(draw);
-       } else {
+      } else {
          clearTimeout(timeCounter);
-       }
-       
+      }
+
       window.requestAnimationFrame(draw)
    }
 
@@ -55,11 +55,12 @@ window.onload = () => {
       '../images/vista-wei-OiERUvVrioU-unsplash.jpg',
       '../images/yucel-moran-ff0WHlZi1HU-unsplash.jpg',
    ]
-   let imgURL = document.body.style.backgroundImage = "url('img_tree.png')";
 
-   function changePic() {
-      document.body.style.backgroundImage = "url('img_tree.png')";
-    }
+   let randomImg = imgArray[Math.floor(Math.random() * imgArray.length)];
+
+   document.querySelector('.tile1, .tile2, .tile3, .tile4, .tile5, .tile6, .tile7, .tile8,.tile9').style.background = randomImg;
+
+   // Set Random Background Image //
 
 };
 
@@ -104,7 +105,7 @@ function checkWin() {
          return true
       } else {
          return false;
-         console.log("something is not correct");
+         console.log("something is not in correct spot");
       }
    }
 
@@ -116,18 +117,26 @@ function checkWin() {
          // return wonGamePuzzle()
          clearInterval(check)
       } else {
-         console.log("not the correct place")
-         //return correctPlace()
+         console.log("something is not in the correct place")
+         let canvas = document.getElementById('canvas')
+         let ctx = canvas.getContext('2d')
+
+         let draw = () => {
+
+            ctx.font = '25px monspace'
+            ctx.fillStyle = 'green'
+            ctx.fillText(`CONGRATS! You made it!`)
+
+            window.requestAnimationFrame(draw)
+         }
+
+         draw()
       }
    }, 80)
 
 }
 
 
-/*  // Won 1st Game
-function wonGamePuzzle()
-
-*/
 
 
 
