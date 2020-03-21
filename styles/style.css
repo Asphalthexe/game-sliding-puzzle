@@ -37,8 +37,11 @@ footer {
 /*  DIV over main DIV  */
 .popup {
     position: absolute;
-    display: none;
+    display: inherit;
     top: 180px;
+    left:400px;
+    font-size: 25pt;
+    color: green;
 }
 
 
@@ -75,7 +78,7 @@ footer {
     border: 1px solid white;
     background: url('../images/vista-wei-OiERUvVrioU-unsplash.jpg');
     background-repeat: no-repeat;
-    background-size: 510px 800px;
+    background-size: 540px 700px;
     cursor: pointer;
     vertical-align: center;
 }
